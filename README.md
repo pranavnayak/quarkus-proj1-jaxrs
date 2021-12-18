@@ -58,3 +58,6 @@ If you want to learn more about building native executables, please consult http
 Easily start your RESTful Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started#the-jax-rs-resources)
+![This is an image](https://github.com/pranavnayak/quarkus-proj1-jaxrs/blob/main/swagger-ui-1.JPG)
+![This is an image](https://github.com/pranavnayak/quarkus-proj1-jaxrs/blob/main/swagger-ui-2.JPG)
+![This is an image](https://github.com/pranavnayak/quarkus-proj1-jaxrs/blob/main/swagger-ui-3.JPG)
