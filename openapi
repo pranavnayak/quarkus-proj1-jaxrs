@@ -1,0 +1,172 @@
+---
+openapi: 3.0.3
+info:
+  title: quarkus-proj1-jaxrs API
+  version: 1.0.0-SNAPSHOT
+tags:
+- name: Movie Resource V2
+  description: Movie Rest API
+paths:
+  /movies:
+    get:
+      tags:
+      - Movie Resource
+      responses:
+        "200":
+          description: OK
+  /movies/results:
+    get:
+      tags:
+      - Movie Resource
+      responses:
+        "200":
+          description: OK
+  /movies/{movieToBeAdded}:
+    post:
+      tags:
+      - Movie Resource
+      parameters:
+      - name: movieToBeAdded
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /movies/{movieToBeDeleted}:
+    delete:
+      tags:
+      - Movie Resource
+      parameters:
+      - name: movieToBeDeleted
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /movies/{movieToBeUpdated}:
+    put:
+      tags:
+      - Movie Resource
+      parameters:
+      - name: movieToBeUpdated
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: movie
+        in: query
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+  /v2/movies:
+    get:
+      tags:
+      - Movie Resource V2
+      summary: Get Movies
+      description: Get List of Movies
+      operationId: getMovies
+      responses:
+        "200":
+          description: Operation Completed
+          content:
+            application/json: {}
+    post:
+      tags:
+      - Movie Resource V2
+      summary: Add Movie
+      description: Add a Movies into the application
+      operationId: addMovie
+      requestBody:
+        description: Movie to be added
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/A Movie'
+        required: true
+      responses:
+        "201":
+          description: Operation Completed
+          content:
+            application/json: {}
+  /v2/movies/results:
+    get:
+      tags:
+      - Movie Resource V2
+      summary: Get Count
+      description: Get Count of Movies present in the application
+      operationId: size
+      responses:
+        "200":
+          description: Operation Completed
+          content:
+            text/plain: {}
+  /v2/movies/{id}:
+    delete:
+      tags:
+      - Movie Resource V2
+      summary: Delete Movie
+      description: Delete an existing Movies residing in the application
+      operationId: deleteMovie
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          format: int64
+          type: integer
+      responses:
+        "204":
+          description: Operation Completed/Movie Deleted
+          content:
+            application/json: {}
+        "400":
+          description: Operation Incomplete/Movie Not deleted
+          content:
+            application/json: {}
+  /v2/movies/{id}/{movieToBeUpdated}:
+    put:
+      tags:
+      - Movie Resource V2
+      summary: Update Movie
+      description: Update an existing Movies residing in the application
+      operationId: updateMovie
+      parameters:
+      - name: id
+        in: path
+        description: Movie Id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        example: 5
+      - name: movieToBeUpdated
+        in: path
+        description: Movie Title
+        required: true
+        schema:
+          type: string
+        example: Matrix
+      responses:
+        "200":
+          description: Operation Completed
+          content:
+            application/json: {}
+components:
+  schemas:
+    A Movie:
+      description: Movie Details
+      required:
+      - title
+      type: object
+      properties:
+        id:
+          format: int64
+          type: integer
+        title:
+          type: string
